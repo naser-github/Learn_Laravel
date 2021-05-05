@@ -13,4 +13,9 @@ class UploadVideo extends Model
         
         return $this->morphMany('App\Models\UploadComment', 'commentable');
     }
+
+    public function tags()
+    {
+        return $this->morphToMany('App\Models\Tag', 'taggable');
+    }
 }

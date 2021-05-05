@@ -4,17 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MakeUniqueSlugToPostsTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
-     * Run the migrations.0
+     * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
+        Schema::create('tags', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class MakeUniqueSlugToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropUnique('posts_slug_unique');
-        });
+        Schema::dropIfExists('tags');
     }
 }

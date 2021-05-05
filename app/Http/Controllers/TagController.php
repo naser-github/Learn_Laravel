@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\UploadVideo;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 
-class Upload_VideoController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,7 @@ class Upload_VideoController extends Controller
      */
     public function index()
     {
-        // return view ('videos.create',['videos' => UploadVideo::all()]);
-
-        $videos = UploadVideo::all();
-
-        return view('videos.index',compact('videos'));
+        return view ('tag.index',['tags'=>Tag::all()]);
     }
 
     /**
@@ -29,8 +24,7 @@ class Upload_VideoController extends Controller
      */
     public function create()
     {
-
-        return view ('videos.create', ['tags'=>Tag::all()]);
+        return view('tag.create');
     }
 
     /**
@@ -41,42 +35,40 @@ class Upload_VideoController extends Controller
      */
     public function store(Request $request)
     {
-        // UploadVideo::create(request()->except('_token', 'upload') );
+        $request->validate([
+            'title' => 'required',
+            'desc' => 'sometimes'
+        ]);
 
-        $url = $request->input('url');
-        $path = $request->input('video_path');
-        $tags = $request->input('tags');
- 
-        $up = new UploadVideo;
-        $up->url = $url;
-        $up->path = $path;
+        $name = $request->input('title');
+        $desc = $request->input('desc');
 
-        $up->save();
+        $tag = new Tag;
+        $tag->name = $name;
+        $tag->description =$desc;
+        $tag->save();
 
-        $up->tags()->attach($tags);
-
-        return back();
+        return redirect()->to('/tags')->with('suck','Tag added Successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-        $videos = UploadVideo::where('id',$id)->get();
-        return view('videos.show', compact('videos'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -85,10 +77,10 @@ class Upload_VideoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -96,10 +88,10 @@ class Upload_VideoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
         //
     }

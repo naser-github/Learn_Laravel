@@ -18,6 +18,17 @@
                 <input type="text" class="form-control" name="video_path">
             </div>
 
+            <div class="mb-3">
+                <label for="tags">Select Tags</label>
+                <select name="tags[]" class="form-control" multiple>
+                     
+                    @foreach ($tags as $tag)
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>    
+                    @endforeach
+                    
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-dark" name="upload">Upload</button>
         </form>
 

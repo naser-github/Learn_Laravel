@@ -103,3 +103,5 @@ Route::post('/Upload_Video/{id}/comment', 'App\Http\Controllers\CommentControlle
 Route::post('/Upload_Post/{id}/comment', 'App\Http\Controllers\CommentController@post')->name('post_comment');
 
 Route::get('/comments','App\Http\Controllers\CommentController@index')->name('comment_table');
+
+Route::resource('/tags', 'App\Http\Controllers\TagController');
