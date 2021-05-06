@@ -36,13 +36,19 @@
                 <tr>
                     <th> <h3> Id </h3> </th>
                     <th> <h3> Name </h3> </th>
-                    <th> <h3> Desc at </h3> </th>
+                    <th> <h3> Description </h3> </th>
+                    <th><h3> Created At </h3></th>
                 </tr>
                 @foreach ($tags as $tag)
                     <tr>
                         <td> {{ $tag->id }}  </td>
-                        <td> {{ $tag->name }}  </td>
-                        <td> {{ $tag->desc }}  </td>
+                        <td> 
+                            <a href="/tags/{{$tag->id}}">
+                                {{ $tag->name }}
+                            </a>
+                        </td>
+                        <td> {{ $tag->description }}  </td>
+                        <td> {{ $tag->created_at->tz('6.00') }}  </td>
                     </tr>
                 @endforeach
                 </table>

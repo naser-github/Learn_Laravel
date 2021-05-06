@@ -78,7 +78,9 @@ class Upload_VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tags = Tag::all();
+        $video = UploadVideo::where('id',$id)->first();
+        return view ('videos.edit', compact('video','tags'));
     }
 
     /**
@@ -90,7 +92,23 @@ class Upload_VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'url' => 'required|min:5'
+        ]);
+        $url = $request->input('url');
+        $path = $request->input('video_path');
+        $tags = $request->input('tags');
+ 
+        $up = UploadVideo::where('id',$id)->first();
+        $up->url = $url;
+        $up->path = $path;
+
+        // $up->tags()->detach($up->tags);
+        // $up->tags()->attach($tags);
+
+        $up->tags()->sync($tags); //alternate of detach() + attach()
+
+        return back();
     }
 
     /**
