@@ -18,6 +18,7 @@
                 <td>{{$video->path}}</td>
                 <td>
                     <a href="/Upload_Video/{{$video->id}}">Show</a>
+                    <a href="/Upload_Video/{{$video->id}}/edit">Edit</a>
                 </td>
             </tr>
         @endforeach

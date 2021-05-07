@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-/* 
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
+ 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 
 Route::group(['prefix' => '/'],function(){
 
-    Route::get('/', 'App\Http\Controllers\HomeController@func_homepage')->name('homepage');
-    Route::get('/trending_places', 'App\Http\Controllers\HomeController@func_trending_places')->name('trending');
-    Route::get('/blog', 'App\Http\Controllers\HomeController@func_blog')->name('blog');
+    Route::get('/', 'App\Http\Controllers\HomesController@func_homepage')->name('homepage');
+    Route::get('/trending_places', 'App\Http\Controllers\HomesController@func_trending_places')->name('trending');
+    Route::get('/blog', 'App\Http\Controllers\HomesController@func_blog')->name('blog');
 
 });
 
@@ -105,3 +107,12 @@ Route::post('/Upload_Post/{id}/comment', 'App\Http\Controllers\CommentController
 Route::get('/comments','App\Http\Controllers\CommentController@index')->name('comment_table');
 
 Route::resource('/tags', 'App\Http\Controllers\TagController');
+
+Route::get('/login/e','App\Http\Controllers\LoginController@create')->name('login')->middleware('auth');
+Route::post('/login/e','App\Http\Controllers\LoginController@index')->name('login');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

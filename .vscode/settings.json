@@ -1,8 +1,10 @@
 {
     "cSpell.ignoreWords": [
+        "auth",
         "commentable",
         "fileup",
         "imageable",
+        "logine",
         "mailhog",
         "maxvalue",
         "sendmail",
@@ -13,6 +15,7 @@
         "upposts"
     ],
     "cSpell.words": [
+        "auth",
         "endforeach"
     ]
 }
