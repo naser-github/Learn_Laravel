@@ -25,6 +25,13 @@
             </div>
 
             <div class="mb-3">
+                <label for="created">Video Date</label>
+                <input type="date" class="form-control" name="created"
+                value="{{$video->created_at->format('Y-m-d') }}"
+                >
+            </div>
+
+            <div class="mb-3">
                 <label for="tags">Select Tags</label>
                 <select name="tags[]" class="form-control" multiple>
                      

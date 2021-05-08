@@ -108,10 +108,10 @@ Route::get('/comments','App\Http\Controllers\CommentController@index')->name('co
 
 Route::resource('/tags', 'App\Http\Controllers\TagController');
 
-Route::get('/login/e','App\Http\Controllers\LoginController@create')->name('login')->middleware('auth');
+Route::get('/login/e','App\Http\Controllers\LoginController@create')->name('login')->middleware('verified')->middleware('auth');
 Route::post('/login/e','App\Http\Controllers\LoginController@index')->name('login');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

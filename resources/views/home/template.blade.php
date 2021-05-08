@@ -38,7 +38,11 @@
             <a class="nav-link" href="{{ route('trending') }}">Trending Places</a>
             <a class="nav-link" href="{{ route('blog') }}">Blogs</a>
             <a class="nav-link" href="{{ route('show') }}" tabindex="-1" aria-disabled="true">Show</a>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            {{-- <button class="button-narrow btn-success bt" style="margin-left: 240%">
+                <a class="nav-link " href="/login">
+                    Login
+                </a>
+            </button> --}}
         </div>
         </div>
     </div>

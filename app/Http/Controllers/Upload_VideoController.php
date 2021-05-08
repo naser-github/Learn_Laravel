@@ -78,9 +78,9 @@ class Upload_VideoController extends Controller
      */
     public function edit($id)
     {
-        if(!session()->has('user_name')){
-            return back();
-        }
+        // if(!session()->has('user_name')){
+        //     return back();
+        // }
         $selected_tags = ''; 
         $video = UploadVideo::where('id',$id)->first();
         $tags = Tag::all();
