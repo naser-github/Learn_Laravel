@@ -27,7 +27,6 @@ Route::group(['prefix' => '/'],function(){
     Route::get('/', 'App\Http\Controllers\HomesController@func_homepage')->name('homepage');
     Route::get('/trending_places', 'App\Http\Controllers\HomesController@func_trending_places')->name('trending');
     Route::get('/blog', 'App\Http\Controllers\HomesController@func_blog')->name('blog');
-
 });
 
 Route::get('/table', 'App\Http\Controllers\PersonsController@see')->name('table');
@@ -106,7 +105,7 @@ Route::post('/Upload_Post/{id}/comment', 'App\Http\Controllers\CommentController
 
 Route::get('/comments','App\Http\Controllers\CommentController@index')->name('comment_table');
 
-Route::resource('/tags', 'App\Http\Controllers\TagController');
+Route::resource('/tags', 'App\Http\Controllers\TagController')->middleware('admin');
 
 Route::get('/login/e','App\Http\Controllers\LoginController@create')->name('login')->middleware('verified')->middleware('auth');
 Route::post('/login/e','App\Http\Controllers\LoginController@index')->name('login');
